@@ -43,7 +43,7 @@ namespace DrsBeePharmacyApiDemo
                 foreach (ApiPharmacyPrescription apiPharmacyPrescription in prescriptionsToDeliver.prescriptionsToDeliver)
                 {
                     if (apiPharmacyPrescription.quote != null && apiPharmacyPrescription.externalPharmacyCode != null && apiPharmacyPrescription.quote.express &&
-                         apiPharmacyPrescription.quote.addressInfo.politicalRegion != null && apiPharmacyPrescription.quote.addressInfo != null && apiPharmacyPrescription.quote.billingInfo != null)
+                         apiPharmacyPrescription.quote.addressInfo != null && apiPharmacyPrescription.quote.addressInfo.politicalRegion != null && apiPharmacyPrescription.quote.addressInfo != null && apiPharmacyPrescription.quote.billingInfo != null)
                     {
 
                         //Encabezado
