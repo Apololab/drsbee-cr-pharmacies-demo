@@ -72,6 +72,7 @@ namespace DrsBeePharmacyApiDemo
                             if (politicalRegion != null && politicalRegion.parent != null && politicalRegion.parent.parent != null)
                             {
                                 //Para comprobar esta información, puede ver politicalRegion.description
+                                //El tipo de dato se distingue por su nivel: Level 1: Provincia, Level 2:Cantón, Level 3: Distrito  
                                 Console.WriteLine(
                                     "Provincia_ID: " + politicalRegion.parent.parent.description + ": " + politicalRegion.parent.parent.number + "\n" +
                                     "Canton_ID: " + politicalRegion.parent.description + ": " + politicalRegion.parent.number + "\n" +
