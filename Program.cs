@@ -59,6 +59,7 @@ namespace DrsBeePharmacyApiDemo
                             "Fecha_Documento: " + apiPharmacyPrescription.quote.quoteDate + "\n" +
                             "Telefono: " + apiPharmacyPrescription.patient.phoneNumber + "\n" +
                             "Email: " + apiPharmacyPrescription.patient.email + "\n" +
+                            //Codigo de autorización
                             "Num_Aprobacion_Pago: " + apiPharmacyPrescription.quote.paymentTransaction.externalReference + "\n" +
                             "Fecha de pago: " + apiPharmacyPrescription.quote.paymentTransaction.date.ToString() + "\n" +
                             "Pago_Total: " + apiPharmacyPrescription.quote.totalPrice + "\n" +
@@ -101,7 +102,7 @@ namespace DrsBeePharmacyApiDemo
                                         "Codigo_Articulo: " + drugPharmacyQuotePresentation.pharmacyPresentationCode + "\n" +
                                         "Unidad: " + drugPharmacyQuotePresentation.loose + "\n" +
                                         "Cantidad: " + drugPharmacyQuotePresentation.quantity + "\n" +
-                                        "Precio_Bruto_Unitario_DrsBee: " + drugPharmacyQuotePresentation.grossPrice + "\n" +
+                                        "Precio_Bruto_total_DrsBee: " + drugPharmacyQuotePresentation.grossPrice + "\n" +
                                         "Precio_Bruto_Unitario indicado por farmacia: " + drugPharmacyQuotePresentation.unitaryPrice + "\n" +
                                         "Descuento_Porcentaje: " + drugPharmacyQuotePresentation.discountPercentage + "\n" +
                                         "Fecha vencimiento del descuento: " + (drugPharmacyQuotePresentation.discountDueDate != null ? drugPharmacyQuotePresentation.discountDueDate.ToString() : "-") + "\n" +
