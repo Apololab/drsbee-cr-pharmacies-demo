@@ -59,8 +59,7 @@ namespace DrsBeePharmacyApiDemo
                             "Fecha_Documento: " + apiPharmacyPrescription.quote.quoteDate + "\n" +
                             "Telefono: " + apiPharmacyPrescription.patient.phoneNumber + "\n" +
                             "Email: " + apiPharmacyPrescription.patient.email + "\n" +
-                            //Codigo de autorización
-                            "Num_Aprobacion_Pago: " + apiPharmacyPrescription.quote.paymentTransaction.externalReference + "\n" +
+                            "Num_Aprobacion_Pago: " + apiPharmacyPrescription.quote.paymentTransaction.authorizationCode + "\n" +
                             "Fecha de pago: " + apiPharmacyPrescription.quote.paymentTransaction.date.ToString() + "\n" +
                             "Pago_Total: " + apiPharmacyPrescription.quote.totalPrice + "\n" +
                             "Monto_Total: " + apiPharmacyPrescription.quote.totalPrice + "\n");
