@@ -13,7 +13,7 @@ namespace DrsBeePharmacyApiDemo
 
         static DrsBeeConfig CONFIG = DrsBeeConfig.DEV_CR;
         const string API_KEY_RESOURCE = "apiClientPharmaGroupClerk1.key"; // El archivo esta incluído en el proyecto como resource, en el directorio "Resources"
-        const string API_KEY_ACCOUNT = "pharmagroupclerk1@test.com";
+        const string API_KEY_ACCOUNT = "drsbeeapololabdemo@gmail.com";
 
         static UserServices userServices = new UserServices(CONFIG);
         static PharmacyServices pharmacyServices = new PharmacyServices(CONFIG);
@@ -87,9 +87,10 @@ namespace DrsBeePharmacyApiDemo
                         }
 
                         //Detalle
+                        
                         Console.WriteLine(
                                 "ID_Documento: " + apiPharmacyPrescription.id);
-
+                        //Almecenar ID_Documento en sus sistemas, para que sea posible la dispensación en DrsBee
 
                         foreach (Dictionary<string, List<DrugPharmacyQuotePresentation>> keyValues in apiPharmacyPrescription.quote.quotePresentationsByDrugIdByVademecumId.Values)
                         {
@@ -114,10 +115,14 @@ namespace DrsBeePharmacyApiDemo
                 }
 
                 Console.WriteLine("Actualmente hay: " + prescriptionsToDeliver.prescriptionsToDeliver.Count + " prescription a entregar");
-                ApiPharmacyPrescription prescriptionToDispense = prescriptionsToDeliver.prescriptionsToDeliver[prescriptionsToDeliver.prescriptionsToDeliver.Count - 1];
-                Console.WriteLine("Dispensando primer prescripcion con id " + prescriptionToDispense.id + " pendiente de dispensar desde " + prescriptionToDispense.quote.lastModifiedDate);
-                pharmacyServices.DispenseQuotedPrescriptionAsync(prescriptionToDispense.id).Wait();
-                Console.WriteLine("Prescription dispensada");
+                if(prescriptionsToDeliver.prescriptionsToDeliver.Count > 0)
+                {
+                    ApiPharmacyPrescription prescriptionToDispense = prescriptionsToDeliver.prescriptionsToDeliver[prescriptionsToDeliver.prescriptionsToDeliver.Count - 1];
+                    Console.WriteLine("Dispensando primer prescripcion con id " + prescriptionToDispense.id + " pendiente de dispensar desde " + prescriptionToDispense.quote.lastModifiedDate);
+                    pharmacyServices.DispenseQuotedPrescriptionAsync(prescriptionToDispense.id).Wait();
+                    Console.WriteLine("Prescription dispensada");
+                }
+               
                 Console.ReadLine();
 
             }
