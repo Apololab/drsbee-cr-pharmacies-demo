@@ -13,7 +13,8 @@ namespace DrsBeePharmacyApiDemo
 
         static DrsBeeConfig CONFIG = DrsBeeConfig.DEV_CR;
         const string API_KEY_RESOURCE = "apiClientPharmaGroupClerk1.key"; // El archivo esta incluído en el proyecto como resource, en el directorio "Resources"
-        const string API_KEY_ACCOUNT = "drsbeeapololabdemo@gmail.com";
+
+        const string API_KEY_ACCOUNT = "pharmagroupclerk1@test.com";
 
         static UserServices userServices = new UserServices(CONFIG);
         static PharmacyServices pharmacyServices = new PharmacyServices(CONFIG);
@@ -128,22 +129,23 @@ namespace DrsBeePharmacyApiDemo
             }
             catch (Exception ex)
             {
-                WebServiceException wsex = ex.InnerException != null ? ex.InnerException as WebServiceException : null;
-                HttpException hex = ex.InnerException != null ? ex.InnerException as HttpException : null;
+                Exception realException = ex is AggregateException && ex.InnerException != null ? ex.InnerException : ex;
+                WebServiceException wsex = realException as WebServiceException;
+                HttpException httpEx = realException as HttpException;
                 // Error en drsbee backend con mensaje de usuario final incluido, Malas credenciales, malos parametros, prescripcion en estado incorrecto, etc.
                 if (wsex != null)
                 {
                     Console.WriteLine("El API de DrsBee retornó un error: " + wsex.Message + " de tipo " + wsex.Type);
                 }
                 // Error HTTP fuera drsbee, falla de conexion, timeout,etc.
-                else if (hex != null)
+                else if (httpEx != null)
                 {
-                    Console.WriteLine("Hubo un error de comunicación http con DrsBee, código: " + hex.HttpCode + "  invocando el URL: " + hex.Url);
+                    Console.WriteLine("Hubo un error de comunicación http con DrsBee, código: " + httpEx.HttpCode + "  invocando el URL: " + httpEx.Url);
                 }
                 else
                 {
-                    Console.WriteLine("Ocurrió un error desconocido ");
-                    Console.WriteLine(ex.StackTrace);
+                    Console.WriteLine("Ocurrió un error desconocido: "+ realException.Message);
+                    Console.WriteLine(realException.StackTrace);
                 }
             }
         }
